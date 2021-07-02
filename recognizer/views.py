@@ -4,4 +4,8 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'recognizer/index/index.html', )
+    return render(request, 'recognizer/index.html', )
+
+
+def recognize(request):
+    return render(request, 'recognizer/get_emotion.html', )
