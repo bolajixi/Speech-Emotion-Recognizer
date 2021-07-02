@@ -15,12 +15,12 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md">
-        <div class="container-fluid"><a class="navbar-brand" href="#">Recognize</a><button data-bs-toggle="collapse"
+        <div class="container-fluid"><a class="navbar-brand" href="{% url 'recognize:index' %}">Recognize</a><button data-bs-toggle="collapse"
                 class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
                     navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse text-end" id="navcol-1">
                 <ul class="navbar-nav text-end ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#">Get emotion!</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'recognize:get_emotion' %}">Get emotion!</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
                 </ul>
             </div>
