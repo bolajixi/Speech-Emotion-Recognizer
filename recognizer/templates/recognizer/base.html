@@ -8,8 +8,8 @@
     <title>SER</title>
     <meta name="description" content="Get user emotion from speech recording">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="manifest" href="manifest.json">
-    
+    <link rel="manifest" href="{% static  'manifest/manifest.json' %}">
+
 </head>
 
 <body>
@@ -31,7 +31,7 @@
         {% endblock content%}
     </div>
     
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 
 </html>
