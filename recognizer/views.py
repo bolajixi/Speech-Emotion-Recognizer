@@ -7,5 +7,5 @@ def index(request):
     return render(request, 'recognizer/index.html', )
 
 
-def recognize(request):
+def get_emotion(request):
     return render(request, 'recognizer/get_emotion.html', )
