@@ -5,3 +5,10 @@
   margin-left: auto;
   margin-top: 10%;
 }
+#get_emotion_btn {
+  border-radius: 20px;
+  width: 22.5%;
+  height: auto;
+  background: rgb(255, 34, 24);
+  padding: 15px;
+}
