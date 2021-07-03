@@ -82,14 +82,14 @@ function createDownloadLink(blob) {
     //add the new audio and a elements to the li element 
     li.appendChild(au);
     li.appendChild(link);
-    upload.value = filename + '.wav';
+    // upload.value = filename + '.wav';
 
     //Upload link
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/audio/", true);
+    xhttp.open("POST", "/recognize/recording/", true);
     xhttp.setRequestHeader("X-CSRFToken", csrftoken);
     var data = new FormData();
-    data.append('data', blob, filename + '.wav');
+    data.append('data', blob, filename);
     xhttp.send(data);
     //add the li element to the ordered list `
     recordingsList.appendChild(li);
