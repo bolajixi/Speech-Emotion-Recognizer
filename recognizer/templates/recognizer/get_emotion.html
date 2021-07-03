@@ -7,14 +7,6 @@
 
 {% block content %}
     <a id="download">Download</a>
-
-    <div id="body">
-        <p class="text-center">Record<br></p>
-        <button id="recordButton" class="btn btn-primary" id="get_emotion_btn" type="button">Let's
-            begin</button>
-        <button id="stopButton" class="btn btn-primary" id="get_emotion_btn" type="button">Stop</button>
-    </div>
-    <ol id="recordingsList"></ol>
     
     {% if form %}
         <form action="{% url 'recognize:get_emotion' %}" method="POST" enctype="multipart/form-data">
@@ -22,6 +14,14 @@
             {{ form }}
             <button type="submit">Upload</button>
         </form>
+    {% else %}
+        <div id="body">
+            <p class="text-center">Record<br></p>
+            <button id="recordButton" class="btn btn-primary" id="get_emotion_btn" type="button">Let's
+                begin</button>
+            <button id="stopButton" class="btn btn-primary" id="get_emotion_btn" type="button">Stop</button>
+        </div>
+        <ol id="recordingsList"></ol>
     {% endif %}
 
     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
