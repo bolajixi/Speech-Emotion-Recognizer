@@ -21,6 +21,7 @@
                 begin</button>
             <button id="stopButton" class="btn btn-primary" id="get_emotion_btn" type="button">Stop</button>
         </div>
+        {% csrf_token %}
         <ol id="recordingsList"></ol>
     {% endif %}
 
