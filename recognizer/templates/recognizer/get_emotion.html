@@ -16,11 +16,13 @@
     </div>
     <ol id="recordingsList"></ol>
     
-    <form action="{% url 'recognize:get_emotion' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Upload</button>
-    </form>
+    {% if form %}
+        <form action="{% url 'recognize:get_emotion' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Upload</button>
+        </form>
+    {% endif %}
 
     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script src="{% static 'js/utils.js' %}"></script>
