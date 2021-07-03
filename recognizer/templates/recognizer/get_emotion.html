@@ -6,45 +6,22 @@
 {% endblock title %}
 
 {% block content %}
+    <a id="download">Download</a>
 
-<a id="download">Download</a>
-<button id="stop">Stop</button>
-<script>
-    let shouldStop = false;
-    let stopped = false;
-    const downloadLink = document.getElementById('download');
-    const stopButton = document.getElementById('stop');
+    <div id="body">
+        <p class="text-center">Record<br></p>
+        <button id="recordButton" class="btn btn-primary" id="get_emotion_btn" type="button">Let's
+            begin</button>
+        <button id="stopButton" class="btn btn-primary" id="get_emotion_btn" type="button">Stop</button>
+    </div>
+    <ol id="recordingsList"></ol>
+    
+    <form action="{% url 'recognize:get_emotion' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Upload</button>
+    </form>
 
-    stopButton.addEventListener('click', function () {
-        shouldStop = true;
-    });
-
-    const handleSuccess = function (stream) {
-        const options = { mimeType: 'audio/webm' };
-        const recordedChunks = [];
-        const mediaRecorder = new MediaRecorder(stream, options);
-
-        mediaRecorder.addEventListener('dataavailable', function (e) {
-            if (e.data.size > 0) {
-                recordedChunks.push(e.data);
-            }
-
-            if (shouldStop === true && stopped === false) {
-                mediaRecorder.stop();
-                stopped = true;
-            }
-        });
-
-        mediaRecorder.addEventListener('stop', function () {
-            downloadLink.href = URL.createObjectURL(new Blob(recordedChunks));
-            downloadLink.download = 'acetest.wav';
-        });
-
-        mediaRecorder.start();
-    };
-
-    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-        .then(handleSuccess);
-
-</script>
+    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+    <script src="{% static 'js/utils.js' %}"></script>
 {% endblock content %}
