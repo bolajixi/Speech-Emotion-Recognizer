@@ -86,7 +86,7 @@ function createDownloadLink(blob) {
 
     //Upload link
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/recognize/recording/", true);
+    xhttp.open("POST", "/recognize/", true);
     xhttp.setRequestHeader("X-CSRFToken", csrftoken);
     var data = new FormData();
     data.append('data', blob, filename);
