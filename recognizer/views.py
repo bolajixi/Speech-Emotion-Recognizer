@@ -1,6 +1,8 @@
 import os
 import glob
+from os import path
 from pathlib import Path
+import speech_recognition as sr
 
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -48,6 +50,8 @@ def get_emotion_upload(request):
             if latest_path:
 
                 process_audio(latest_path)
+                transcription = get_transcription(latest_path)
+                print(transcription)
 
                 # Delete file after processing
                 os.remove(latest_path)
@@ -72,6 +76,8 @@ def get_emotion_recording(request):
         if latest_path:
 
             process_audio(latest_path)
+            transcription = get_transcription(latest_path)
+            print(transcription)
 
             # Delete file after processing
             os.remove(latest_path)
@@ -88,3 +94,21 @@ def process_audio(audio_file):
     processed = smile.process_file(audio_file)
 
     print(processed.shape)
+
+
+def get_transcription(audio_file):
+    '''
+    Transcribe audio recording.
+    '''
+    print(audio_file)
+
+    transcription = []
+    r = sr.Recognizer()
+
+    with sr.AudioFile(audio_file) as source:
+        audio = r.record(source)  # read the entire audio file
+
+        trans = r.recognize_google(audio, language="en-US")
+        transcription.append(trans)
+
+    return ''.join(transcription)
