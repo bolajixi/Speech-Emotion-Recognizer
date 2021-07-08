@@ -10,7 +10,7 @@ def extract_features(audio_file, **kwargs):
 
     # TODO Cache this function output
     def _load_data():
-        with open('./zscore40.pkl', 'rb') as f:
+        with open('./recognizer/stats/zscore40.pkl', 'rb') as f:
             mean1, std1, mean2, std2, mean3, std3 = pickle.load(f)
         return mean1, std1, mean2, std2, mean3, std3
 
@@ -30,11 +30,11 @@ def extract_features(audio_file, **kwargs):
     mean1, std1, mean2, std2, mean3, std3 = _load_data()
 
     # Dataset parameters
-    dataset_size = 1
+    dataset_size = 0
     filter_num = 40
     eps = 1e-5
 
-    dataset = np.zeros((dataset_size, 300, filter_num, 3), dtype=np.float32)
+    dataset = np.zeros((1, 300, filter_num, 3), dtype=np.float32)
 
     # Calulate log-Mel Spectrum for audio file
     data, time, rate = _read_file(audio_file)
