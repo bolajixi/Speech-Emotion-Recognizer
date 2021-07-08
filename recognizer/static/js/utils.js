@@ -44,7 +44,6 @@ function startRecording() { console.log("recordButton clicked");
         console.log("Recording started");
     }).catch(function(err) {
         //enable the record button if getUserMedia() fails 
-        console.log('ppp')
         recordButton.disabled = false;
         stopButton.disabled = true;
     });
