@@ -8,7 +8,6 @@ import numpy as np
 
 def extract_features(audio_file, **kwargs):
 
-    # TODO Cache this function output
     def _load_data():
         with open('./recognizer/stats/zscore40.pkl', 'rb') as f:
             mean1, std1, mean2, std2, mean3, std3 = pickle.load(f)
