@@ -1,4 +1,5 @@
 #body {
+  font-family: "Montserrat", sans-serif;
   width: 70%;
   text-align: center;
   margin-right: auto;
@@ -9,12 +10,15 @@
   border-radius: 20px;
   width: 22.5%;
   height: auto;
-  background: rgb(255, 34, 24);
+  background: #ff2218;
   padding: 15px;
+  cursor: pointer;
 }
 .center {
-  width: 50%;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 10%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
