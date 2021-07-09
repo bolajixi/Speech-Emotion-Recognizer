@@ -36,10 +36,10 @@ def get_emotion_recording(request):
 
             print(predict_audio(recent_file_path).shape)
             transcription = get_transcription(recent_file_path)
-            print(transcription)
+            print(transcription['success'], transcription['transcription'])
 
             # Delete file after processing
-            os.remove(recent_file_path)
+            # os.remove(recent_file_path)
 
     return render(request, 'recognizer/get_emotion.html', )
 
@@ -64,10 +64,10 @@ def get_emotion_upload(request):
 
                 predict_audio(recent_file_path)
                 transcription = get_transcription(recent_file_path)
-                print(transcription)
+                print(transcription['success'], transcription['transcription'])
 
                 # Delete file after processing
-                os.remove(recent_file_path)
+                # os.remove(recent_file_path)
 
             return HttpResponse('Success')
     else:
@@ -87,16 +87,34 @@ def get_transcription(audio_file):
     '''
     print(audio_file)
 
-    transcription = []
+    response = {
+        "success": True,
+        "error": None,
+        "transcription": None
+    }
+
     r = sr.Recognizer()
 
     with sr.AudioFile(audio_file) as source:
+        # r.adjust_for_ambient_noise(source)
         audio = r.record(source)  # read the entire audio file
 
-        trans = r.recognize_google(audio, language="en-US")
-        transcription.append(trans)
+        try:
+            response["transcription"] = r.recognize_google(
+                audio, language="en-US")
 
-    return ''.join(transcription)
+        except sr.RequestError:
+            # API was unreachable or unresponsive
+            response["success"] = False
+            response["error"] = "API unavailable"
+
+        except sr.UnknownValueError:
+            # speech was unintelligible
+            response["error"] = "Unable to recognize speech"
+
+    os.remove(audio_file)
+
+    return response
 
 
 def get_latest_file_path():
