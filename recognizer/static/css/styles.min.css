@@ -12,3 +12,9 @@
   background: rgb(255, 34, 24);
   padding: 15px;
 }
+.center {
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10%;
+}

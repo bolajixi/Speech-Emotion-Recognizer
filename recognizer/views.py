@@ -22,6 +22,10 @@ def index(request):
     return render(request, 'recognizer/index.html', )
 
 
+def privacy(request):
+    return render(request, 'recognizer/privacy.html', )
+
+
 def get_emotion_recording(request):
     if request.method == "POST":
         HOME_path = Path.cwd() / 'media' / 'recordings'
