@@ -7,11 +7,114 @@
 
 {% block content %}
 
-    <div id="body">
-        <p class="text-center">Hi there!<br></p>
-        <p class="text-center">Welcome to Talky. In order for this app to work smoothly, we’d like to know your voice. Don’t
-            worry, we don’t save your recording. View more about your privacy.<br></p>
-        <a href="{% url 'recognize:get_emotion_rec' %}"><button class="btn btn-primary" id="get_emotion_btn" type="button">Let's begin</button></a>
+    <div class="main__center center">
+        <div class="main__wrap">
+            <h1 class="main__title title title_big" data-aos>
+                <span class="title__box">
+                    <span class="title__text">Hmmm<span class="title__color">.</span>
+                    </span>
+                </span>
+                <span class="title__box">
+                    <span class="title__text">
+                        <span class="title__line">What's</span>
+                    </span>
+                </span>
+                <span class="title__box">
+                    <span class="title__text">Your</span>
+                </span>
+                <span class="title__box"><span class="title__text">Emotion?</span>
+                </span>
+            </h1>
+    
+            <div class="main__info info" data-aos="animation-scale-y" data-aos-delay="400">I think I can try figure your
+                emotion
+                from your voice! 😊</div>
+            <div class="main__control" data-aos="animation-scale-y" data-aos-delay="550"><a class="main__btn btn btn_purple"
+                    href="{% url 'recognize:get_emotion_rec' %}">Give it a shot</a><a class="main__link" href="#">
+                    <div class="main__icon"><img class="main__pic" src="img/play.svg" alt=""></div>
+                    <div class="main__text">See how I do it!</div>
+                </a>
+            </div>
+        </div>
+        <div class="main__view" data-aos>
+            <div class="main__preview"><img class="main__pic js-parallax" data-scale="1.5" data-orientation="down"
+                    src="{% static 'images/recognize/floating_doodle.svg' %}" alt=""></div>
+            <div class="main__preview"><img class="main__pic js-parallax" data-scale="1.5" data-orientation="up"
+                    src="{% static 'images/recognize/spring.svg' %}" alt=""></div>
+            <div class="main__preview"><img class="main__pic" alt=""></div>
+            <div class="main__preview"><img class="main__pic" src="{% static 'images/recognize/floating_female.svg' %}"
+                    alt=""></div>
+        </div>
+        <div class="main__circles">
+            <div class="main__circle"></div>
+            <div class="main__circle js-rellax" data-rellax-speed="2"></div>
+            <div class="main__circle js-rellax" data-rellax-speed="1"></div>
+            <div class="main__circle js-rellax" data-rellax-speed="2"></div>
+            <div class="main__circle js-rellax" data-rellax-speed=".3"></div>
+            <div class="main__circle"></div>
+            <div class="main__circle js-rellax" data-rellax-speed="1"></div>
+        </div>
+    </div>
+    </div>
+    <div class="features js-features">
+        <div class="features__center center">
+            <div class="features__head" data-aos="animation-scale-y">
+                <div class="features__box">
+                    <h2 class="features__title title">How to use the app.</h2>
+                </div>
+            </div>
+            <div class="features__body">
+                <div class="features__container">
+                    <div class="features__slider js-features-slider">
+                        <div class="features__slide" data-aos="animation-scale-y">
+                            <div class="features__details">
+                                <div class="features__preview"><img class="features__pic"
+                                        src="{% static 'images/recognize/chatbox.png' %}" alt=""></div>
+                                <div class="features__category">Record Your Voice</div>
+                                <div class="features__text">Allow access to your built-in microphone so I can
+                                    record your voice. Or,</div>
+                            </div>
+                        </div>
+                        <div class="features__slide" data-aos="animation-scale-y">
+                            <div class="features__details">
+                                <div class="features__preview"><img class="features__pic"
+                                        src="{% static 'images/recognize/camera.png' %}" alt=""></div>
+                                <div class="features__category">Upload Your Recording</div>
+                                <div class="features__text">Simply upload your recording as a .wav file and
+                                    the emotion would be processed.</div>
+                            </div>
+                        </div>
+                        <div class="features__slide" data-aos="animation-scale-y" data-aos-delay="200">
+                            <div class="features__details">
+                                <div class="features__preview"><img class="features__pic"
+                                        src="{% static 'images/recognize/offer-pic-1.png' %}" alt=""></div>
+                                <div class="features__category">Predict Emotion</div>
+                                <div class="features__text">Your recording would be analyzed and your emotion would be
+                                    predicted.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="features__status js-features-status"></div>
+            </div>
+        </div>
+        <div class="features__circle js-rellax" data-rellax-speed="-.7"></div>
+        <div class="features__bg" data-aos data-aos-duration="1000"><img class="features__pic"
+                src="{% static 'images/recognize/features-pic-1.svg' %}" alt=""></div>
+    </div>
+    <div class="tool">
+        <div class="tool__center center">
+            <div class="tool__container">
+                <div class="tool__wrap">
+                    <h2 class="tool__title title aos-init aos-animate" data-aos="animation-scale-y">What do you think?</h2>
+                    <div class="tool__info info aos-init aos-animate" data-aos="animation-scale-y" data-aos-delay="150">
+                        Feel free to chat me up.</div>
+                    <div class="tool__btn aos-init aos-animate" data-aos="animation-scale-y" data-aos-delay="300"><a
+                            class="btn btn_white js-popup-open" href="#popup-contact" data-effect="mfp-zoom-in">Try free for
+                            30 days</a></div>
+                </div>
+            </div>
+        </div>
     </div>
     
 {% endblock content %}
