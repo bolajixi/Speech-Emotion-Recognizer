@@ -29,24 +29,26 @@
 
 <body>
     <div class="page">
-        <div class="main">
-            <div class="header js-header" id="header">
-                <div class="header__center center"><button
-                        class="header__burger js-header-burger"><span></span></button><a class="header__logo"
-                        href="{% url 'recognize:index' %}"><img class="header__pic" src="img/logo.svg" alt="avana"></a>
-                    <div class="header__wrap js-header-wrap">
-                        <nav class="header__nav">
-                            <a class="header__item" href="{% url 'recognize:get_emotion' %}">Upload Recording</a>
-                            <a class="header__item" href="{% url 'recognize:privacy' %}">Privacy</a>
-                        </nav>
-                    </div>
-                    <a class="header__btn btn btn_pink" href="{% url 'recognize:get_emotion_rec' %}">Get emotion!</a>
+        <div class="header js-header" id="header">
+            <div class="header__center center"><button class="header__burger js-header-burger"><span></span></button><a
+                    class="header__logo" href="{% url 'recognize:index' %}"><img class="header__pic" src="img/logo.svg"
+                        alt="avana"></a>
+                <div class="header__wrap js-header-wrap">
+                    <nav class="header__nav">
+                        <a class="header__item" href="{% url 'recognize:get_emotion' %}">Upload Recording</a>
+                        <a class="header__item" href="{% url 'recognize:privacy' %}">Privacy</a>
+                    </nav>
                 </div>
-                <div class="header__bg js-header-bg"></div>
+                <a class="header__btn btn btn_pink" href="{% url 'recognize:get_emotion_rec' %}">Get emotion!</a>
             </div>
+            <div class="header__bg js-header-bg"></div>
+        </div>
+            
             {% block content %}
 
-            {% endblock content%}
+            {% endblock content %}
+
+        </div>
 
         <div class="footer js-footer">
             <div class="footer__center center">
@@ -62,7 +64,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <script src="{% static 'js/app.js' %}"></script>
     <script src="{% static 'js/common.js' %}"></script>
 </body>
