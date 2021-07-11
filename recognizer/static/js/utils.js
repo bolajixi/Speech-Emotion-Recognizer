@@ -18,6 +18,8 @@ var upload = document.getElementById('id_record')
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
 
+stopButton.disabled = true;
+
 function startRecording() { console.log("recordButton clicked");
 
     var constraints = {
@@ -27,6 +29,8 @@ function startRecording() { console.log("recordButton clicked");
     /* Disable the record button until we get a success or fail from getUserMedia() */
 
     recordButton.disabled = true;
+    recordButton.setAttribute('title', 'Click the Stop button to stop recording');
+
     stopButton.disabled = false;
 
     navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
@@ -53,6 +57,8 @@ function stopRecording() {
     console.log("stopButton clicked");
     //disable the stop button, enable the record too allow for new recordings 
     stopButton.disabled = true;
+    stopButton.setAttribute('title', 'Click the Record button to start recording');
+
     recordButton.disabled = false;
     //tell the recorder to stop the recording 
     rec.stop(); //stop microphone access 
