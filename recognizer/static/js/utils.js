@@ -20,6 +20,18 @@ stopButton.addEventListener("click", stopRecording);
 
 stopButton.disabled = true;
 
+var seconds = 0;
+var el = document.getElementById('seconds');
+
+function incrementSeconds() {
+    seconds += 1;
+    el.innerText = seconds;
+}
+
+var cancel;
+
+
+
 function startRecording() { console.log("recordButton clicked");
 
     var constraints = {
@@ -46,6 +58,9 @@ function startRecording() { console.log("recordButton clicked");
         //start the recording process 
         rec.record()
         console.log("Recording started");
+        // Start the timer
+        cancel = setInterval(incrementSeconds, 1000);
+        seconds = 0
     }).catch(function(err) {
         //enable the record button if getUserMedia() fails 
         recordButton.disabled = false;
@@ -63,6 +78,8 @@ function stopRecording() {
     //tell the recorder to stop the recording 
     rec.stop(); //stop microphone access 
     gumStream.getAudioTracks()[0].stop();
+    //Stop the timer
+    clearInterval(cancel);
     //create the wav blob and pass it on to createDownloadLink 
     rec.exportWAV(createDownloadLink);
 }
