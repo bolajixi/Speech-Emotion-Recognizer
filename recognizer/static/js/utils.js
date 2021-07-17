@@ -112,7 +112,9 @@ function createDownloadLink(blob) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 302) {
             var json = JSON.parse(this.responseText); 
-            console.log(json.message); 
+            console.log(json.prediction); 
+            console.log(json.url);
+            window.location.replace(json.url);
         }
     };
 

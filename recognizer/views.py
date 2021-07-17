@@ -7,8 +7,8 @@ from pathlib import Path
 
 import numpy as np
 
-from django.shortcuts import render, redirect
-from django.http import JsonResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.http import JsonResponse
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.urls import reverse
@@ -60,8 +60,9 @@ def get_emotion_recording(request):
                 [{"conv2d_input": features.tolist(
                 )[0], "keras_layer_input": transcription['transcription']}]
             )
+            result_url = reverse('recognize:result')
 
-            return JsonResponse(status=302, data={"prediction": predictions})
+            return JsonResponse(status=302, data={"prediction": predictions, "url": request.build_absolute_uri(result_url)})
 
     return render(request, 'recognizer/get_emotion.html', )
 
@@ -92,8 +93,9 @@ def get_emotion_upload(request):
                     [{"conv2d_input": features.tolist(
                     )[0], "keras_layer_input": transcription['transcription']}]
                 )
+                result_url = reverse('recognize:result')
 
-                return JsonResponse(status=302, data={"prediction": predictions})
+                return JsonResponse(status=302, data={"prediction": predictions, "url": request.build_absolute_uri(result_url)})
     else:
         form = AudioForm()
 
