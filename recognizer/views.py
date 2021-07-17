@@ -1,6 +1,8 @@
 import os
 import glob
 from os import path
+import requests
+import json
 from pathlib import Path
 
 import numpy as np
@@ -16,7 +18,11 @@ import speech_recognition as sr
 from .process_audio import extract_features
 
 
+# Model Server URL (Docker)
+url = 'http://localhost:8501/v1/models/Multimodal_SER:predict'
+
 # Create your views here.
+
 
 def index(request):
     return render(request, 'recognizer/index.html', )
@@ -38,9 +44,17 @@ def get_emotion_recording(request):
 
         if recent_file_path:
 
-            print(predict_audio(recent_file_path).shape)
+            features = process_audio(recent_file_path)
             transcription = get_transcription(recent_file_path)
+
             print(transcription['success'], transcription['transcription'])
+
+            predictions = make_prediction(
+                [{"conv2d_input": features.tolist(
+                )[0], "keras_layer_input": transcription['transcription']}]
+            )
+
+            print(predictions)
 
             # Delete file after processing
             # os.remove(recent_file_path)
@@ -66,9 +80,16 @@ def get_emotion_upload(request):
 
             if recent_file_path:
 
-                predict_audio(recent_file_path)
+                features = process_audio(recent_file_path)
                 transcription = get_transcription(recent_file_path)
                 print(transcription['success'], transcription['transcription'])
+
+                predictions = make_prediction(
+                    [{"conv2d_input": features.tolist(
+                    )[0], "keras_layer_input": transcription['transcription']}]
+                )
+
+                print(predictions)
 
                 # Delete file after processing
                 # os.remove(recent_file_path)
@@ -80,7 +101,17 @@ def get_emotion_upload(request):
     return render(request, 'recognizer/get_emotion.html', {'form': form})
 
 
-def predict_audio(audio_file):
+def make_prediction(instances):
+    data = json.dumps({"signature_name": "serving_default",
+                       "instances": instances})
+    headers = {"content-type": "application/json"}
+    json_response = requests.post(url, data=data, headers=headers)
+
+    predictions = json.loads(json_response.text)['predictions']
+    return predictions
+
+
+def process_audio(audio_file):
     features = extract_features(audio_file)
     return features
 
