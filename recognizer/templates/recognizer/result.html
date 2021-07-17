@@ -1,0 +1,87 @@
+{% extends "recognizer/base.html" %}
+{% load static %}
+
+{% block title %}
+Recognize - Get emotion from Upload
+{% endblock title %}
+
+{% block content %}
+
+{% if form %}
+<div style="padding:12.5% 0 0 0" class="demo">
+    <div class="demo__center center">
+        <div class="demo__head aos-init aos-animate" data-aos="animation-scale-y">
+            <div class="demo__icon">🔥</div>
+            <div class="demo__info">We offer flexible pricing options for freelancers and design teams.</div>
+        </div>
+        <div class="demo__list">
+            <div class="demo__item aos-init aos-animate" data-aos="animation-translate-y">
+                <form action="{% url 'recognize:get_emotion' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button class="demo__btn btn btn_purple" href="" data-effect="mfp-zoom-in"
+                        type="submit">Upload</button>
+                </form>
+                <!-- <div class="demo__text">Still not sure? Schedule a demo to see how Collab can help you get more done.
+                    </div> -->
+
+            </div>
+            <div class="demo__item aos-init aos-animate" data-aos="animation-translate-y" data-aos-delay="200">
+                <h3 class="demo__title title title_sm">Upload <br>Your <br>Recording!</h3>
+                <div class="demo__text">Upload only .wav files and the emotion would be processed😏.
+                </div><a class="demo__btn btn btn_white js-popup-open" href="#popup-contact"
+                    data-effect="mfp-zoom-in">Upload</a>
+            </div>
+        </div>
+    </div>
+    <div class="demo__circle js-rellax" data-rellax-speed="1" style="transform: translate3d(0px, -79px, 0px);"></div>
+</div>
+{% else %}
+{% csrf_token %}
+<div style="padding:12.5% 0 0 0" class="like">
+    <div class="like__center center">
+        <div class="like__container">
+            <div class="like__wrap">
+                <h2 class="like__title title aos-init aos-animate" data-aos="animation-scale-x">Record when you're
+                    ready<span class="title__color">.</span></h2>
+                <div class="like__text aos-init aos-animate" data-aos="animation-scale-x" data-aos-delay="150">
+                    <p>Don't forget to grant me access to your browsers microphone
+                        so i can record and tell you back your emotion.</p>
+                </div>
+                <div class="like__btn aos-init aos-animate" data-aos="animation-scale-x" data-aos-delay="300">
+                    <div class="package__btns">
+                        <div class="package__arrows">
+                            <button data-toggle="tooltip" id="recordButton" class="btn btn_purple"
+                                style="margin: 17px 17px 17px 0px;min-width: 140px;" id="get_emotion_btn"
+                                type="button">Record</button>
+                            <button data-toggle="tooltip" id="stopButton" class="btn btn_purple"
+                                style="margin: 17px 17px 17px 0px;min-width: 140px;" id="get_emotion_btn"
+                                type="button">Stop</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="like__preview aos-init aos-animate" style="right:3.5%;bottom:15.5%; width: auto;" data-aos="">
+                <div class="speed__number aos-init aos-animate" data-aos="animation-scale-y"><span
+                        id="seconds">0</span>s</div>
+            </div>
+            <div class="like__circle"></div>
+            <div class="like__circles">
+                <div class="like__circle"></div>
+                <div class="like__circle js-rellax" data-rellax-speed="-1"
+                    style="transform: translate3d(0px, 90px, 0px);"></div>
+                <div class="like__circle js-rellax" data-rellax-speed=".8"
+                    style="transform: translate3d(0px, -38px, 0px);"></div>
+                <div class="like__circle"></div>
+                <div class="like__circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<ol id="recordingsList"></ol>
+{% endif %}
+
+<script src="{% static 'js/recorder.js' %}"></script>
+<script src="{% static 'js/utils.js' %}"></script>
+{% endblock content %}
