@@ -114,7 +114,7 @@ function createDownloadLink(blob) {
             var json = JSON.parse(this.responseText); 
             console.log(json.prediction); 
             console.log(json.url);
-            window.location.replace(json.url);
+            window.location.href = json.url;
         }
     };
 
