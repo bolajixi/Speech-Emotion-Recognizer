@@ -7,16 +7,19 @@ from pathlib import Path
 
 import numpy as np
 
-from django.shortcuts import render
-from django.http import JsonResponse
+from django.shortcuts import render, redirect
+from django.http import JsonResponse, HttpResponseRedirect
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
+from django.urls import reverse
+from django.views import View
 
 from recognizer.forms import AudioForm
 
 import speech_recognition as sr
 from .process_audio import extract_features
 
+app_name = "recognizer"
 
 # Model Server URL (Docker)
 url = 'http://localhost:8501/v1/models/Multimodal_SER:predict'
@@ -58,17 +61,7 @@ def get_emotion_recording(request):
                 )[0], "keras_layer_input": transcription['transcription']}]
             )
 
-            # Check if persistent prediction in session
-            if 'prediction' in request.session:
-                del request.session['prediction']
-
-            # Add prediction to session
-            request.session['prediction'] = predictions
-
-            # Delete file after processing
-            # os.remove(recent_file_path)
-            # TODO Add websockets
-            return JsonResponse({"message": predictions})
+            return JsonResponse(status=302, data={"prediction": predictions})
 
     return render(request, 'recognizer/get_emotion.html', )
 
@@ -100,12 +93,7 @@ def get_emotion_upload(request):
                     )[0], "keras_layer_input": transcription['transcription']}]
                 )
 
-                print(predictions)
-
-                # Delete file after processing
-                # os.remove(recent_file_path)
-
-            return JsonResponse({"message": predictions})
+                return JsonResponse(status=302, data={"prediction": predictions})
     else:
         form = AudioForm()
 

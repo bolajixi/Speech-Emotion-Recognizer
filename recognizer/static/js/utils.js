@@ -108,6 +108,14 @@ function createDownloadLink(blob) {
 
     //Upload link
     var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 302) {
+            var json = JSON.parse(this.responseText); 
+            console.log(json.message); 
+        }
+    };
+
     xhttp.open("POST", "/recognize/", true);
     xhttp.setRequestHeader("X-CSRFToken", csrftoken);
     var data = new FormData();
