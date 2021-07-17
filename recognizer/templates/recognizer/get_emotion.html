@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Recognize - Get emotion from Upload
+    Recognize - Get emotion
 {% endblock title %}
 
 {% block content %}
@@ -10,10 +10,6 @@
     {% if form %}
     <div style="padding:12.5% 0 0 0" class="demo">
         <div class="demo__center center">
-            <div class="demo__head aos-init aos-animate" data-aos="animation-scale-y">
-                <div class="demo__icon">🔥</div>
-                <div class="demo__info">We offer flexible pricing options for freelancers and design teams.</div>
-            </div>
             <div class="demo__list">
                 <div class="demo__item aos-init aos-animate" data-aos="animation-translate-y">
                     <form action="{% url 'recognize:get_emotion' %}" method="POST" enctype="multipart/form-data">
@@ -76,8 +72,9 @@
             </div>
         </div>
         <ol id="recordingsList"></ol>
+
+        <script src="{% static 'js/recorder.js' %}"></script>
+        <script src="{% static 'js/utils.js' %}"></script>
     {% endif %}
 
-    <script src="{% static 'js/recorder.js' %}"></script>
-    <script src="{% static 'js/utils.js' %}"></script>
 {% endblock content %}
