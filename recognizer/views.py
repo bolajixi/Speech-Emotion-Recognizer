@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 
@@ -30,6 +30,10 @@ def index(request):
 
 def privacy(request):
     return render(request, 'recognizer/privacy.html', )
+
+
+def result(request):
+    return render(request, 'recognizer/result.html', )
 
 
 def get_emotion_recording(request):
@@ -58,6 +62,8 @@ def get_emotion_recording(request):
 
             # Delete file after processing
             # os.remove(recent_file_path)
+            # TODO Add websockets
+            return JsonResponse({"message": predictions})
 
     return render(request, 'recognizer/get_emotion.html', )
 
@@ -69,7 +75,7 @@ def get_emotion_upload(request):
         file_extension = filename.split('.')[-1]
 
         if file_extension.lower() != 'wav':
-            return HttpResponse('Bad upload')
+            return JsonResponse('Bad upload')
 
         form = AudioForm(request.POST, request.FILES or None)
 
@@ -94,7 +100,7 @@ def get_emotion_upload(request):
                 # Delete file after processing
                 # os.remove(recent_file_path)
 
-            return HttpResponse('Success')
+            return JsonResponse({"message": predictions})
     else:
         form = AudioForm()
 
@@ -102,13 +108,16 @@ def get_emotion_upload(request):
 
 
 def make_prediction(instances):
+
+    emotion_class = ['Angry', 'Happy', 'Neutral', 'Sad']
+
     data = json.dumps({"signature_name": "serving_default",
                        "instances": instances})
     headers = {"content-type": "application/json"}
     json_response = requests.post(url, data=data, headers=headers)
 
     predictions = json.loads(json_response.text)['predictions']
-    return predictions
+    return emotion_class[np.argmax(predictions)]
 
 
 def process_audio(audio_file):
