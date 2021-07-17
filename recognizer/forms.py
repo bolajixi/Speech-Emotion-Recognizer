@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import widgets
 from recognizer.models import Audio_store
 
 
@@ -10,3 +11,8 @@ class AudioForm(forms.ModelForm):
 
         model = Audio_store
         fields = ('record',)
+
+        upload_styles = {'class': 'field__input', }
+        widgets = {
+            'record': forms.FileInput(attrs=upload_styles)
+        }

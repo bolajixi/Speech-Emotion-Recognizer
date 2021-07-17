@@ -8,11 +8,33 @@
 {% block content %}
     
     {% if form %}
-        <form action="{% url 'recognize:get_emotion' %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit">Upload</button>
-        </form>
+    <div style="padding:12.5% 0 0 0" class="demo">
+        <div class="demo__center center">
+            <div class="demo__head aos-init aos-animate" data-aos="animation-scale-y">
+                <div class="demo__icon">🔥</div>
+                <div class="demo__info">We offer flexible pricing options for freelancers and design teams.</div>
+            </div>
+            <div class="demo__list">
+                <div class="demo__item aos-init aos-animate" data-aos="animation-translate-y">
+                    <form action="{% url 'recognize:get_emotion' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button class="demo__btn btn btn_purple" href="" data-effect="mfp-zoom-in" type="submit">Upload</button>
+                    </form>
+                    <!-- <div class="demo__text">Still not sure? Schedule a demo to see how Collab can help you get more done.
+                    </div> -->
+                    
+                </div>
+                <div class="demo__item aos-init aos-animate" data-aos="animation-translate-y" data-aos-delay="200">
+                    <h3 class="demo__title title title_sm">Upload <br>Your <br>Recording!</h3>
+                    <div class="demo__text">Upload only .wav files and the emotion would be processed😏.
+                    </div><a class="demo__btn btn btn_white js-popup-open" href="#popup-contact"
+                        data-effect="mfp-zoom-in">Upload</a>
+                </div>
+            </div>
+        </div>
+        <div class="demo__circle js-rellax" data-rellax-speed="1" style="transform: translate3d(0px, -79px, 0px);"></div>
+    </div>
     {% else %}
         {% csrf_token %}
         <div style="padding:12.5% 0 0 0" class="like">
