@@ -58,7 +58,12 @@ def get_emotion_recording(request):
                 )[0], "keras_layer_input": transcription['transcription']}]
             )
 
-            print(predictions)
+            # Check if persistent prediction in session
+            if 'prediction' in request.session:
+                del request.session['prediction']
+
+            # Add prediction to session
+            request.session['prediction'] = predictions
 
             # Delete file after processing
             # os.remove(recent_file_path)
