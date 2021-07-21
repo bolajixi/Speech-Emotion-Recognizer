@@ -13,6 +13,7 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.urls import reverse
 from django.views import View
+from django.views.decorators.cache import cache_page
 
 from recognizer.forms import AudioForm
 
@@ -23,10 +24,12 @@ app_name = "recognizer"
 
 # Model Server URL (Docker)
 url = 'http://localhost:8501/v1/models/Multimodal_SER:predict'
+cache_time_in_minutes = 60
 
 # Create your views here.
 
 
+@cache_page(60 * cache_time_in_minutes)
 def index(request):
     return render(request, 'recognizer/index.html', )
 
