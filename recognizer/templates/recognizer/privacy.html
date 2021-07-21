@@ -7,14 +7,32 @@
 
 {% block content %}
 
-    <div class="center">
-        <p style="font-family: montserrat;font-weight: bold;font-size: 320%;">Privacy</p>
-        <p style="font-family: 'Open Sans', sans-serif;">Privacy is a fundamental human right. With Recognize, it’s one core
-            value.&nbsp;Recognize was designed from the beginning to identify your emotion without knowing your identity.
-            You don’t sign-in or sign-up with your email. Your voice is your data and we believe it's up to you to share and
-            with whom you share with.<br><br>When Recognize does process or store data on our servers, it’s associated with
-            a random identifier — a string of letters and numbers. That data is used identify your emotion and deleted
-            immediately after processing.<br></p>
+    <!-- <div class="center">
+        <p style="font-family: montserrat;font-weight: bold;font-size: 320%;"></p>
+        <p style="font-family: 'Open Sans', sans-serif;"><br></p>
+    </div> -->
+
+    <div class="design">
+        <div class="design__center center">
+            <div class="design__wrap aos-init aos-animate" data-aos="animation-translate-y">
+                <h2 class="design__title title">Privacy<span class="title__color">.</span></h2>
+                <div class="design__info info">Privacy is a fundamental human right. With Recognize, it’s one core
+                value.&nbsp;Recognize was designed from the beginning to identify your emotion without knowing your identity.
+                You don’t sign-in or sign-up with your email. Your voice is your data and we believe it's up to you to share and
+                with whom you share with.<br><br>When Recognize does process or store data on our servers, it’s associated with
+                a random identifier — a string of letters and numbers. That data is used identify your emotion and deleted
+                immediately after processing.</div>
+            </div>
+            <div class="design__bg aos-init aos-animate" data-aos="" data-aos-delay="400"><img class="design__pic"
+                    src="img/design-pic.png" alt=""></div>
+            <div class="design__circles">
+                <div class="design__circle js-rellax" data-rellax-speed="1"
+                    style="transform: translate3d(0px, -33px, 0px);"></div>
+                <div class="design__circle"></div>
+                <div class="design__circle js-rellax" data-rellax-speed=".5"
+                    style="transform: translate3d(0px, -24px, 0px);"></div>
+            </div>
+        </div>
     </div>
 
 {% endblock content %}
