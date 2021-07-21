@@ -1,4 +1,5 @@
 {% load static %}
+{% load cache %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,20 +30,22 @@
 
 <body>
     <div class="page">
-        <div class="header js-header" id="header">
-            <div class="header__center center"><button class="header__burger js-header-burger"><span></span></button><a
-                    class="header__logo" href="{% url 'recognize:index' %}"><img class="header__pic" src="{% static 'images/recognize/logo.svg' %}"
-                        alt="avana"></a>
-                <div class="header__wrap js-header-wrap">
-                    <nav class="header__nav">
-                        <a class="header__item" href="{% url 'recognize:get_emotion' %}">Upload Recording</a>
-                        <a class="header__item" href="{% url 'recognize:privacy' %}">Privacy</a>
-                    </nav>
+        {% cache 3600 header %}
+            <div class="header js-header" id="header">
+                <div class="header__center center"><button class="header__burger js-header-burger"><span></span></button><a
+                        class="header__logo" href="{% url 'recognize:index' %}"><img class="header__pic" src="{% static 'images/recognize/logo.svg' %}"
+                            alt="avana"></a>
+                    <div class="header__wrap js-header-wrap">
+                        <nav class="header__nav">
+                            <a class="header__item" href="{% url 'recognize:get_emotion' %}">Upload Recording</a>
+                            <a class="header__item" href="{% url 'recognize:privacy' %}">Privacy</a>
+                        </nav>
+                    </div>
+                    <a class="header__btn btn btn_pink" href="{% url 'recognize:get_emotion_rec' %}">Get emotion!</a>
                 </div>
-                <a class="header__btn btn btn_pink" href="{% url 'recognize:get_emotion_rec' %}">Get emotion!</a>
+                <div class="header__bg js-header-bg"></div>
             </div>
-            <div class="header__bg js-header-bg"></div>
-        </div>
+        {% endcache %}
             
             {% block content %}
 
