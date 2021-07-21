@@ -34,6 +34,7 @@ def index(request):
     return render(request, 'recognizer/index.html', )
 
 
+@cache_page(60 * cache_time_in_minutes)
 def privacy(request):
     return render(request, 'recognizer/privacy.html', )
 
