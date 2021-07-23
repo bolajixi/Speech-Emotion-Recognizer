@@ -15,6 +15,9 @@
     <link rel="manifest" href="{% static 'manifest/manifest.json' %}">
     <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
     <link rel="stylesheet" media="all" href="{% static 'css/app.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
     var viewportmeta = document.querySelector('meta[name="viewport"]');
         if (viewportmeta) {
@@ -33,7 +36,7 @@
         {% cache 3600 header %}
             <div class="header js-header" id="header">
                 <div class="header__center center"><button class="header__burger js-header-burger"><span></span></button><a
-                        class="header__logo" href="{% url 'recognize:index' %}"><img class="header__pic" src="{% static 'images/recognize/logo.svg' %}"
+                        class="header__logo" href="{% url 'recognize:index' %}"><img style="width: 145px;" class="header__pic" src="{% static 'images/recognize/logo.svg' %}"
                             alt="avana"></a>
                     <div class="header__wrap js-header-wrap">
                         <nav class="header__nav">
@@ -62,7 +65,7 @@
                         </a>
                         <div class="footer__copyright">Made by Bolaji Olawale with love.</div>
                         <a class="footer__scroll js-link-scroll" href="#header">
-                            <div class="footer__icon"><img class="footer__pic" src="{% static 'images/recognize/scroll.svg' %}" alt=""></div>
+                            <div class="footer__icon"><img style="width: 100%;" class="footer__pic" src="{% static 'images/recognize/scroll.svg' %}" alt=""></div>
                             <div class="footer__text">Back to top</div>
                         </a>
                     </div>
