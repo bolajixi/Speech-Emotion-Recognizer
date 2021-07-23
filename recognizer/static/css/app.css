@@ -5481,7 +5481,7 @@ body:not(.touch-device) .header__item:hover .header__body {
 
 .design {
   position: relative;
-  margin-top: 12.5%;
+  margin-top: 20vh;
   margin-bottom: 110px;
 }
 
@@ -5500,7 +5500,7 @@ body:not(.touch-device) .header__item:hover .header__body {
 }
 
 .design__info {
-  max-width: 380px;
+  max-width: fit-content;
 }
 
 .design__hand,
@@ -9826,6 +9826,7 @@ body:not(.touch-device) .header__item:hover .header__body {
   }
   .design {
     margin-bottom: 80px;
+    margin-top: 15vh;
   }
   .design__wrap {
     margin-bottom: 42px;
@@ -10495,7 +10496,7 @@ body:not(.touch-device) .header__item:hover .header__body {
     display: block;
   }
   .design__info {
-    max-width: 230px;
+    max-width: fit-content;
   }
   .design__text {
     max-width: 180px;
