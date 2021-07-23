@@ -24,7 +24,7 @@ app_name = "recognizer"
 
 # Model Server URL (Docker)
 url = 'http://localhost:8501/v1/models/Multimodal_SER:predict'
-cache_time_in_minutes = 60
+cache_time_in_minutes = 10
 
 # Create your views here.
 
