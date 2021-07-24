@@ -23,7 +23,7 @@
         if (viewportmeta) {
             if (screen.width < 375) {
                 var newScale = screen.width / 375;
-                viewportmeta.content = 'width=375, minimum-scale=' + newScale + ', maximum-scale=1.0, user-scalable=no, initial-scale=' + newScale + '';
+                viewportmeta.content = 'width=375, minimum-scale=' + newScale + ', maximum-scale=1.0, initial-scale=' + newScale + '';
             } else {
                 viewportmeta.content = 'width=device-width, maximum-scale=1.0, initial-scale=1.0';
             }
@@ -61,7 +61,7 @@
                 <div class="footer__center center">
                     <div class="footer__bottom">
                         <a class="footer__company" href="#">
-                            <img style="height:20px;width:20px" class="footer__pic" src="{% static 'images/recognize/heart.svg' %}" alt="">
+                            <img style="height:20px;width:20px" class="footer__pic" src="{% static 'images/recognize/heart.svg' %}">
                         </a>
                         <div class="footer__copyright">Made by Bolaji Olawale with love.</div>
                         <a class="footer__scroll js-link-scroll" href="#header">
