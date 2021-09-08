@@ -76,7 +76,8 @@ pyrsistent==0.17.3
 python-dateutil==2.8.1
 python-speech-features==0.6
 pytz==2020.1
-pywin32==300
+# pywin32==300
+pypiwin32
 pywin32-ctypes==0.2.0
 pywinpty==0.5.7
 pyzmq==22.0.3
